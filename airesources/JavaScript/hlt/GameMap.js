@@ -16,6 +16,15 @@ class GameMap {
         this._shipById = {};
         this._enemyShips = [];
         this._shipsByPlayerId = {};
+        this._team = false;
+    }
+
+    get isTeam() {
+        return this._team;
+    }
+
+    setTeam() {
+        this._team = true;
     }
 
     get myPlayerId() {

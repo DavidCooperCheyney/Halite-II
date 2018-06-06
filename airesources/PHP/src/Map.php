@@ -32,11 +32,28 @@ class Map
      */
     private $planets;
 
+    /**
+     * @var isTeam
+     */
+    private $team;
+    
+
     public function __construct(int $playerId, int $width, int $height)
     {
         $this->playerId = $playerId;
         $this->width = $width;
         $this->height = $height;
+        $this->team = FALSE;
+    }
+
+    public function setTeam()
+    {
+      $this->team = TRUE;
+    }
+
+    public function isTeam()
+    {
+      return $this->team;
     }
 
     public function update(array $players, array $ships, array $planets)

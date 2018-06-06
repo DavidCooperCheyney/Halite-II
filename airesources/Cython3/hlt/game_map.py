@@ -10,6 +10,8 @@ class Map:
     :ivar height: Map height
     """
 
+    team = False
+
     def __init__(self, my_id, width, height):
         """
         :param my_id: User's id (tag)
@@ -182,7 +184,18 @@ class Player:
         :rtype: (int, Player, list[str])
         """
         player_id, *remainder = tokens
+
         player_id = int(player_id)
+
+        
+        if player_id > 3:
+            team = True
+
+
+        player_id = player_id % 4
+
+        
+
         ships, remainder = entity.Ship._parse(player_id, remainder)
         player = Player(player_id, ships)
         return player_id, player, remainder

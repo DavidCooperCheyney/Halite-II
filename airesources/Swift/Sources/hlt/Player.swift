@@ -9,7 +9,13 @@ public struct Player: HLTDeserializable {
     public private(set) var ships:   [Ship] = []
     
     static func deserialize(_ tokens: TokenStack) -> Player {
-        let playerId = Int(tokens.pop())!
+        var playerId = Int(tokens.pop())!
+
+        if playerId > 3 {
+            Map.team = true
+        }
+
+        playerId = playerId % 4
         
         let numShips = Int(tokens.pop())!
         var ships = [Ship]()

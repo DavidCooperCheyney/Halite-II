@@ -8,7 +8,10 @@ public enum EntityTypes {
 
 public struct Map {
     let playerId: Int
-    
+
+    // to keep track of whether the game is a team game
+    public static var team = false
+
     /// The width of the map
     public let width: Int
     

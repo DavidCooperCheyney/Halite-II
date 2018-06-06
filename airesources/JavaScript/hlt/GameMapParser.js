@@ -35,9 +35,12 @@ class GameMapParser {
         const numberOfPlayers = this._nextInt();
 
         forEachInRange(numberOfPlayers, () => {
-            const playerId = this._nextInt();
+            let playerId = this._nextInt();
+            if (playerId > 3 ) {
+                this.map.setTeam();
+            }
+            playerId = playerId % 4;
             this.map.addPlayerId(playerId);
-
             this._parseShips(playerId);
         });
     }

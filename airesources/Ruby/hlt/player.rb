@@ -36,6 +36,14 @@ class Player
   # return: The parsed player id, player object, and remaining tokens
   def self.parse_single(tokens)
     player_id = Integer(tokens.shift)
+
+    if player_id > 3
+      #      Map.team = true
+      Map.class_variable_set(:@@team, true)
+    end
+
+    player_id = player_id % 4
+    
     ships, tokens = Ship.parse(player_id, tokens)
     player = Player.new(player_id, ships)
     return player_id, player, tokens

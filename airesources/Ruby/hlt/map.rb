@@ -11,6 +11,8 @@ require 'position'
 class Map
   attr_reader :my_id, :width, :height
 
+  @@team = false
+
   def initialize(player_id, width, height)
     @my_id = player_id
     @width = width

@@ -90,6 +90,14 @@ class Game
     private function parsePlayer(Tokenizer $tokenizer): Player
     {
         $playerId = $tokenizer->nextInt();
+
+        if ($playerId > 3) {
+          $this->map->setTeam();
+        }
+
+        $playerId = $playerId % 4;
+
+        
         $player = new Player($playerId);
 
         $numShips = $tokenizer->nextInt();
