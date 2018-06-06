@@ -6,6 +6,7 @@ namespace Halite2.hlt {
 
     public class GameMap {
         private int width, height;
+        private boolean team;
         private int playerId;
         private List<Player> players;
         private IList<Player> playersUnmodifiable;
@@ -117,6 +118,12 @@ namespace Halite2.hlt {
                 Dictionary<int, Ship> currentPlayerShips = new Dictionary<int, Ship>();
                 int playerId = MetadataParser.ParsePlayerId(mapMetadata);
 
+                if(playerId > 3) {
+                    team = true;
+                }
+                playerId = playerId % 4;
+
+                
                 Player currentPlayer = new Player(playerId, currentPlayerShips);
                 MetadataParser.PopulateShipList(currentShips, playerId, mapMetadata);
                 allShips.AddRange(currentShips);

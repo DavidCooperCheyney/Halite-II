@@ -92,6 +92,11 @@ namespace hlt {
                 int player_id_int;
                 iss >> player_id_int;
 
+                if (player_id_int > 3) {
+                  map.team = true;
+                }
+                player_id_int = player_id_int % 4;
+
                 player_id = static_cast<PlayerId>(player_id_int);
 
                 unsigned int num_ships;

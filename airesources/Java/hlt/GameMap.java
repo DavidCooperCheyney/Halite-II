@@ -19,10 +19,13 @@ public class GameMap {
     // used only during parsing to reduce memory allocations
     private final List<Ship> currentShips = new ArrayList<>();
 
+    protected boolean team;
+
     public GameMap(final int width, final int height, final int playerId) {
         this.width = width;
         this.height = height;
         this.playerId = playerId;
+        this.team = false;
         players = new ArrayList<>(Constants.MAX_PLAYERS);
         playersUnmodifiable = Collections.unmodifiableList(players);
         planets = new TreeMap<>();
@@ -120,7 +123,15 @@ public class GameMap {
         for (int i = 0; i < numberOfPlayers; ++i) {
             currentShips.clear();
             final Map<Integer, Ship> currentPlayerShips = new TreeMap<>();
-            final int playerId = MetadataParser.parsePlayerId(mapMetadata);
+            int playerId = MetadataParser.parsePlayerId(mapMetadata);
+
+            if (playerId > 3) {
+                this.team = true;
+            }
+
+
+            playerId = playerId % 4;
+
 
             final Player currentPlayer = new Player(playerId, currentPlayerShips);
             MetadataParser.populateShipList(currentShips, playerId, mapMetadata);

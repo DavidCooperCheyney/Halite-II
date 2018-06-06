@@ -9,6 +9,7 @@ namespace hlt {
     class Map {
     public:
         int map_width, map_height;
+      bool team;
 
         std::unordered_map<PlayerId, std::vector<Ship>> ships;
         std::unordered_map<PlayerId, entity_map<unsigned int>> ship_map;
@@ -20,6 +21,11 @@ namespace hlt {
 
         const Ship& get_ship(const PlayerId player_id, const EntityId ship_id) const {
             return ships.at(player_id).at(ship_map.at(player_id).at(ship_id));
+        }
+      
+        const bool find_ship(const PlayerId player_id, const EntityId ship_id) const {
+          const entity_map<unsigned int>& shipIds = ship_map.at(player_id);
+          return shipIds.find(ship_id) != shipIds.end();
         }
 
         const Planet& get_planet(const EntityId planet_id) const {
